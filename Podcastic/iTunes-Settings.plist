@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URIs</key>
+	<dict>
+		<key>iTunesSearchAPIBase</key>
+		<string>https://itunes.apple.com/search?entity=podcast&amp;country=US</string>
+		<key>SearchPodcasts</key>
+		<string>entity=podcast</string>
+		<key>SearchTerm</key>
+		<string>&amp;term=%@</string>
+		<key>SearchResultsLimit</key>
+		<string>&amp;limit=200</string>
+		<key>SearchCountryStoreFront</key>
+		<string>country=US</string>
+	</dict>
+</dict>
+</plist>
