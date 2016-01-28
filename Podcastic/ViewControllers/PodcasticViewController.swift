@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableViewDataSource, UITableViewDelegate, MWFeedParserDelegate {
+class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
     
@@ -21,20 +21,8 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
     
     var podcastArray: [AnyObject] = []
     
-    var feedItems = [MWFeedItem]()
-    
-    func request(){
-        let url = NSURL(string: "http://feeds.serialpodcast.org/serialpodcast")
-        let feedParser = MWFeedParser(feedURL: url)
-        feedParser.connectionType = ConnectionTypeAsynchronously
-        feedParser.delegate = self
-        feedParser.parse()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        request()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +43,20 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
         cell.model = podcastArray[indexPath.row] as? Podcast
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowEpisodes" {
+            let episodesTableViewController = segue.destinationViewController as! EpisodeTableViewController
+            if let selectedPodcastCell = sender as? UITableViewCell {
+                let indexPath = podcastTableView.indexPathForCell(selectedPodcastCell)!
+                let selectedPodcast: Podcast
+                selectedPodcast = podcastArray[indexPath.row] as! Podcast
+                
+                episodesTableViewController.podcastToView = selectedPodcast
+            }
+
+        }
+    }
 
     // MARK: - DataBrokerRequestor implementation
 
@@ -63,23 +65,5 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
         self.podcastTableView.reloadData()
     }
     
-    // MARK: - FEED PARSER DELEGATE
-    
-    func feedParserDidStart(parser: MWFeedParser!) {
-        feedItems = [MWFeedItem]()
-    }
-    
-    func feedParserDidFinish(parser: MWFeedParser!) {
-        var i = 0
-    }
-    
-    func feedParser(parser: MWFeedParser!, didParseFeedInfo info: MWFeedInfo!) {
-        print(info)
-    }
-    
-    func feedParser(parser: MWFeedParser!, didParseFeedItem item: MWFeedItem!) {
-        feedItems.append(item)
-    }
-
 }
 

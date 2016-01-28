@@ -1,17 +1,17 @@
 //
-//  PodcastModel.swift
+//  PodcasticModel.swift
 //  Podcastic
 //
-//  Created by Jason on 1/26/16.
+//  Created by Jason on 1/27/16.
 //  Copyright © 2016 Jason. All rights reserved.
 //
 
 import Foundation
 
-class PodcastModel: PodcasticModel {
+class PodcasticModel: NSObject {
     var collectionID: Int = 0
     
-    override func initFromProperties(propertiesDictionary: NSDictionary) {
+    func initFromProperties(propertiesDictionary: NSDictionary) {
         collectionID = propertiesDictionary["collectionID"] as! Int
     }
 }

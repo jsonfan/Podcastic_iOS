@@ -21,7 +21,8 @@ extension DataBrokerRequestor {
     }
 }
 
-class PodcastDataBrokerBase: NSObject {
+
+class PodcasticDataBrokerBase: NSObject {
     
     let requestor: DataBrokerRequestor
     
@@ -33,10 +34,10 @@ class PodcastDataBrokerBase: NSObject {
         var resultArray: Array<AnyObject> = []
         
         Alamofire.request(.GET, aURI).responseJSON { response in
-            var tempResult = response.result.value as! Dictionary<String, AnyObject>
-            let tempArray = tempResult["results"] as! Array<Dictionary<String, AnyObject>>
             
-//            tempResult.objectForKey("something")
+            var tempResult = response.result.value as! Dictionary<String, AnyObject>
+            let tempArray = tempResult["resultArray"] as! Array<Dictionary<String, AnyObject>>
+            
             // We now know we have an array of JSON objects
             for dataDict: Dictionary<String, AnyObject> in tempArray {
                 resultArray.append(self.createModelFrom(dataDict)!)
@@ -46,7 +47,7 @@ class PodcastDataBrokerBase: NSObject {
         }
     }
     
-    func createModelFrom(dataDictionary: NSDictionary) -> PodcastModel? {
+    func createModelFrom(dataDictionary: NSDictionary) -> PodcasticModel? {
         return nil
     }
     

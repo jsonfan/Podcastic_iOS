@@ -8,16 +8,13 @@
 
 import Foundation
 
-class PodcastDataBroker: PodcastDataBrokerBase {
+class PodcastDataBroker: PodcasticDataBrokerBase {
     
     override var description: String {
-        
         return "I am a Podcast Data Broker"
-        
     }
     
-    override func createModelFrom(dataDictionary: NSDictionary) -> PodcastModel? {
-        
+    override func createModelFrom(dataDictionary: NSDictionary) -> Podcast? {
         let modelObj = Podcast()
         
         modelObj.initFromProperties(dataDictionary)
@@ -26,8 +23,10 @@ class PodcastDataBroker: PodcastDataBrokerBase {
     }
     
     func GetPodcastSearchResultsWithTerm(aTerm: String) {
-        let aTermWithHandledWhiteSpace = aTerm.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-        fetchDataAt(String(format: iTunesSettingsAdapter.GetSearchPodcastsEndPoint(), aTermWithHandledWhiteSpace))
         
+        let aTermWithHandledWhiteSpace = aTerm.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        
+//        fetchDataAt(String(format: iTunesSettingsAdapter.GetSearchPodcastsEndPoint(), aTermWithHandledWhiteSpace))
+        fetchDataAt("http://localhost:3000/api/".stringByAppendingString(aTermWithHandledWhiteSpace))
     }
 }
