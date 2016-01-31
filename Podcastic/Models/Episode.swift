@@ -17,10 +17,18 @@ class Episode : PodcasticModel {
     var enclosureURL: String = ""
     
     override func initFromProperties(propertiesDictionary: NSDictionary) {
-        title = propertiesDictionary["title"]![0] as! String
-        pubDate = propertiesDictionary["pubDate"]![0] as! String
-        duration = propertiesDictionary["itunes:duration"]![0] as! String
-//        summary = propertiesDictionary["itunes:summary"]![0] as! String
-        enclosureURL = propertiesDictionary["enclosure"]![0]["$"]!!["url"] as! String
+        title = propertiesDictionary["title"] as! String
+        pubDate = propertiesDictionary["pubDate"] as! String
+        duration = propertiesDictionary["itunes:duration"] as! String
+        enclosureURL = propertiesDictionary["enclosureURL"] as! String
     }
+    
+    // MARK: - Middleware inits
+    //    override func initFromProperties(propertiesDictionary: NSDictionary) {
+    //        title = propertiesDictionary["title"]![0] as! String
+    //        pubDate = propertiesDictionary["pubDate"]![0] as! String
+    //        duration = propertiesDictionary["itunes:duration"]![0] as! String
+    ////        summary = propertiesDictionary["itunes:summary"]![0] as! String
+    //        enclosureURL = propertiesDictionary["enclosure"]![0]["$"]!!["url"] as! String
+    //    }
 }

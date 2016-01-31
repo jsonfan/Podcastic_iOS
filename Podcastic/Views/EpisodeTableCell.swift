@@ -12,7 +12,6 @@ class EpisodeTableCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    
     private var _model: Episode? = nil
     
     var model: Episode? {
@@ -22,11 +21,7 @@ class EpisodeTableCell: UITableViewCell {
         set {
             self._model = newValue
             self.titleLabel!.text = self._model!.title
-//            self.artistLabelName!.text = self._model!.artistName
-//            Alamofire.request(.GET, self._model!.artworkUrl600).response { (request, response, data, error) in
-//                self.mainImageView.image = UIImage(data: data!, scale:1)
-//            }
-            
+     
         }
     }
 

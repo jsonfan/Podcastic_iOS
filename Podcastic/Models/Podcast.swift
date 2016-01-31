@@ -24,7 +24,5 @@ class Podcast : PodcasticModel {
         feedUrl = propertiesDictionary["feedUrl"] as! String
         genreIds = propertiesDictionary["genreIds"] as! [String]
         artworkUrl600 = propertiesDictionary["artworkUrl600"] as! String
-        
-        // set episodes array here
     }
 }

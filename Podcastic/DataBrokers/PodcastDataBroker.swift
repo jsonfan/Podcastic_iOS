@@ -26,7 +26,9 @@ class PodcastDataBroker: PodcasticDataBrokerBase {
         
         let aTermWithHandledWhiteSpace = aTerm.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         
-//        fetchDataAt(String(format: iTunesSettingsAdapter.GetSearchPodcastsEndPoint(), aTermWithHandledWhiteSpace))
-        fetchDataAt("http://localhost:3000/api/".stringByAppendingString(aTermWithHandledWhiteSpace))
+        fetchDataAt(String(format: iTunesSettingsAdapter.GetSearchPodcastsEndPoint(), aTermWithHandledWhiteSpace))
+        
+        // use below if running middleware on local host
+//        fetchDataAt("http://localhost:3000/api/".stringByAppendingString(aTermWithHandledWhiteSpace))
     }
 }

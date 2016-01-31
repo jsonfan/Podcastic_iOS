@@ -15,6 +15,9 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
     @IBAction func searchButtonPressed(sender: UIButton) {
         let broker = PodcastDataBroker(forRequestor: self)
         broker.GetPodcastSearchResultsWithTerm(searchTextField.text!)
+        
+        // dismiss keyboard
+        searchTextField.resignFirstResponder()
     }
     
     @IBOutlet weak var podcastTableView: UITableView!
@@ -27,15 +30,12 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - UITableViewDelegate/DataSource implementation
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return podcastArray.count
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,9 +45,13 @@ class PodcasticViewController: UIViewController, DataBrokerRequestor, UITableVie
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "ShowEpisodes" {
+            
             let episodesTableViewController = segue.destinationViewController as! EpisodeTableViewController
+            
             if let selectedPodcastCell = sender as? UITableViewCell {
+                
                 let indexPath = podcastTableView.indexPathForCell(selectedPodcastCell)!
                 let selectedPodcast: Podcast
                 selectedPodcast = podcastArray[indexPath.row] as! Podcast

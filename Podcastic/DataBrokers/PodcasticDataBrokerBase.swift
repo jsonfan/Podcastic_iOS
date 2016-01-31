@@ -36,7 +36,7 @@ class PodcasticDataBrokerBase: NSObject {
         Alamofire.request(.GET, aURI).responseJSON { response in
             
             var tempResult = response.result.value as! Dictionary<String, AnyObject>
-            let tempArray = tempResult["resultArray"] as! Array<Dictionary<String, AnyObject>>
+            let tempArray = tempResult["results"] as! Array<Dictionary<String, AnyObject>>
             
             // We now know we have an array of JSON objects
             for dataDict: Dictionary<String, AnyObject> in tempArray {
